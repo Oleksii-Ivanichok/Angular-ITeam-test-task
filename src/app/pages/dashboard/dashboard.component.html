@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<main class="container">
+  <h1>Dashboard</h1>
+  @if (isAdmin) {
+    <app-admin-nav></app-admin-nav>
+  }
+  <button mat-raised-button color="accent" (click)="logout()">Log out</button>
+  <div class="catalog">
+    @for (report of reportsService.reports; track report) {
+      <app-report [report]="report"></app-report>
+    } @empty {
+      <p>No reports</p>
+    }
+  </div>
+
+</main>

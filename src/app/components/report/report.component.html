@@ -1,1 +1,17 @@
-<p>report works!</p>
+<div class="report__card">
+  <img [src]="report.image_url" alt="image" class="card__img">
+  <p>Id: {{ report.id }}</p>
+  <p>Name: {{ report.name }}</p>
+  <p>Users resolved: {{ report.name }}</p>
+  <p>Active: {{ report.active }}</p>
+  <button  mat-button color="accent" (click)="toggleGraph()">{{ showGraph ? 'Hide Graph' : 'Show Graph' }}</button>
+  @if (showGraph) {
+    <div class="graph">
+      <canvas baseChart
+              [data]="barChartData"
+      >
+      </canvas>
+    </div>
+  }
+
+</div>

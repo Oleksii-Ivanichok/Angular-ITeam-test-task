@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import {AuthService} from "./_services/auth.service";
+import {UserInfo} from "./_models/user";
 
 @Component({
   selector: 'app-root',
@@ -10,5 +12,17 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Angular-ITeam-test-task';
+  constructor(private authService: AuthService) {
+  }
+
+  ngOnInit(): void {
+    this.setCurrentUser();
+  }
+
+  setCurrentUser() {
+    const userInfo = localStorage.getItem('user');
+    if (!userInfo) return;
+    const user: UserInfo = JSON.parse(userInfo);
+    this.authService.setCurrentUser(user);
+  }
 }
